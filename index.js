@@ -4,15 +4,20 @@ const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 
 startButton.addEventListener('click', function () {
-   timerId = setInterval(updateClock, 1000);
-   startButton.disabled = true;
-   stopButton.disabled = false;
+   if (!timerId) {
+      timerId = setInterval(updateClock, 1000);
+   }
+   // startButton.disabled = true;
+   // stopButton.disabled = false;
 });
 
 stopButton.addEventListener('click', function () {
-   clearInterval(timerId);
-   startButton.disabled = false;
-   stopButton.disabled = true;
+   if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+      // startButton.disabled = false;
+      // stopButton.disabled = true;
+   }
 });
 
 function updateClock() {
